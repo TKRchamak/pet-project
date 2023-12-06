@@ -6,14 +6,7 @@ import { useForm } from "react-hook-form";
 import zod from "zod";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import {
-  Form,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormMessage,
-} from "./ui/form";
+import { Form, FormField, FormItem, FormControl, FormMessage } from "./ui/form";
 
 const formSchema = zod.object({
   username: zod.string().min(2, {
@@ -37,15 +30,14 @@ const LoginForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={form.control}
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="example@example.com" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -56,16 +48,15 @@ const LoginForm = () => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="* * * * * * " {...field} />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+
+        <Button type="submit">Login</Button>
       </form>
     </Form>
   );

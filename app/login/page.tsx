@@ -1,12 +1,15 @@
 import React from "react";
 import LoginForm from "../components/login-form";
+import { dancingScript, pacifico } from "../components/ui/fonts";
 
 const Page = () => {
   return (
     <main className="flex items-center justify-center md:h-screen">
-      <div className="relative mx-auto flex w-full max-w-[400px] flex-col space-y-2.5 p-4 md:-mt-32">
-        <div className="flex h-20 w-full items-end rounded-lg bg-blue-500 p-3 md:h-36">
-          <div className="w-32 text-white md:w-36">{/* <AcmeLogo /> */}</div>
+      <div className="relative mx-auto flex w-full max-w-[400px] flex-col space-y-2.5 p-4 md:-mt-32 gap-5 shadow-md border-border">
+        <div className="flex h-20 w-full rounded-lg bg-blue-200 p-3 md:h-36 justify-center items-center">
+          <h1 className={`${pacifico.className} text-onyx text-4xl font-bold`}>
+            Instaclone
+          </h1>
         </div>
         <LoginForm />
       </div>
