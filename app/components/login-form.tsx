@@ -9,8 +9,8 @@ import { Input } from "./ui/input";
 import { Form, FormField, FormItem, FormControl, FormMessage } from "./ui/form";
 
 const formSchema = zod.object({
-  username: zod.string().min(2, {
-    message: "Username must be at least 2 characters.",
+  email: zod.string().min(10, {
+    message: "Email must be at least 2 characters.",
   }),
   password: zod.string().min(6, {
     message: "Password must be at least 6 characters.",
@@ -21,19 +21,21 @@ const LoginForm = () => {
   const form = useForm<zod.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      email: "",
       password: "",
     },
   });
 
-  const onSubmit = (values: zod.infer<typeof formSchema>) => {};
+  const onSubmit = (values: zod.infer<typeof formSchema>) => {
+    console.log("values:", values);
+  };
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={form.control}
-          name="username"
+          name="email"
           render={({ field }) => (
             <FormItem>
               <FormControl>
