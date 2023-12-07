@@ -7,10 +7,11 @@ import zod from "zod";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Form, FormField, FormItem, FormControl, FormMessage } from "./ui/form";
+import { useRouter } from "next/navigation";
 
 const formSchema = zod.object({
-  email: zod.string().min(10, {
-    message: "Email must be at least 2 characters.",
+  email: zod.string().email({
+    message: "Please enter a valid email address.",
   }),
   password: zod.string().min(6, {
     message: "Password must be at least 6 characters.",
@@ -18,6 +19,8 @@ const formSchema = zod.object({
 });
 
 const LoginForm = () => {
+  const router = useRouter();
+
   const form = useForm<zod.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -28,6 +31,9 @@ const LoginForm = () => {
 
   const onSubmit = (values: zod.infer<typeof formSchema>) => {
     console.log("values:", values);
+    if (values) {
+      router.push("/dashboard");
+    }
   };
 
   return (
