@@ -48,7 +48,7 @@ const UploadContent = () => {
         title: "Successfully uploaded image!",
         description: "You can upload another image.",
       });
-    }, 3000); // 3000 milliseconds (2 seconds) delay
+    }, 3000); // 3000 milliseconds (3 seconds) delay
   };
 
   return (
