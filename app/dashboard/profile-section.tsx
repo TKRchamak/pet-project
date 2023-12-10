@@ -7,7 +7,7 @@ import React from "react";
 import { pacifico } from "../components/ui/fonts";
 import { Button } from "../components/ui/button";
 import { Plus } from "lucide-react";
-import { Dialog, DialogTrigger } from "./ui/dialog";
+import { Dialog, DialogTrigger } from "../components/ui/dialog";
 import UploadContent from "./upload-content";
 
 const Profile = () => {
