@@ -1,6 +1,6 @@
 import React from "react";
-import Profile from "./profile-section";
-import Gallery from "./gallery-section";
+import Profile from "@/components/profile-section";
+import Gallery from "@/components/gallery-section";
 
 const Dashboard = () => {
   return (
