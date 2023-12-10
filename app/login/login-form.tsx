@@ -4,15 +4,15 @@ import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import zod from "zod";
-import { Button } from "../components/ui/button";
-import { Input } from "../components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Form,
   FormField,
   FormItem,
   FormControl,
   FormMessage,
-} from "../components/ui/form";
+} from "@/components/ui/form";
 import { useRouter } from "next/navigation";
 
 const formSchema = zod.object({

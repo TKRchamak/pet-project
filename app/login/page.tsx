@@ -1,6 +1,6 @@
 import React from "react";
 import LoginForm from "./login-form";
-import { pacifico } from "../components/ui/fonts";
+import { pacifico } from "@/components/ui/fonts";
 
 const Page = () => {
   return (

@@ -1,18 +1,14 @@
-import {
-  Avatar,
-  AvatarImage,
-  AvatarFallback,
-} from "@/app/components/ui/avatar";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import React from "react";
-import { pacifico } from "../components/ui/fonts";
-import { Button } from "../components/ui/button";
+import { pacifico } from "@/components/ui/fonts";
+import { Button } from "@/components/ui/button";
 import { LogOut, Plus } from "lucide-react";
-import { Dialog, DialogTrigger } from "../components/ui/dialog";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import UploadContent from "./upload-content";
 
 const Profile = () => {
   return (
-    <div className="flex flex-col gap-16">
+    <main className="flex flex-col justify-between h-[150px]">
       <div className="flex justify-between items-center">
         <div className="flex justify-center items-center gap-4">
           <Avatar>
@@ -48,7 +44,7 @@ const Profile = () => {
           <UploadContent />
         </Dialog>
       </div>
-    </div>
+    </main>
   );
 };
 
