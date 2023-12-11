@@ -2,7 +2,7 @@ import React from "react";
 import { buttonVariants } from "./ui/button";
 import Link from "next/link";
 import { SwitchCamera } from "lucide-react";
-import { pacifico } from "./fonts";
+import { lobster, pacifico } from "./fonts";
 
 const Logo = () => {
   return (
@@ -15,8 +15,11 @@ const Logo = () => {
         size: "lg",
       })}
     >
-      <SwitchCamera className="h-8 w-8 shrink-0" />
-      <p className={`text-bold text-2xl hidden lg:block ${pacifico.className}`}>
+      <SwitchCamera className="h-8 w-8 shrink-0 lg:hidden" />
+
+      <p
+        className={`text-semibold text-3xl hidden lg:block ${lobster.className}`}
+      >
         Instaclone
       </p>
     </Link>
