@@ -12,6 +12,6 @@
 ---
 
 - **Path alias is set in tsconfig.json**
-- **Shadcn instructions are in components.json**
+- **Shadcn configurations are in components.json**
 - **CSS configurations are in tailwind.config.ts and globals.css**
 - **Initial redirection to dashboard page is setup in next-config.js**
