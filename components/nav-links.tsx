@@ -6,17 +6,27 @@ import {
   Compass,
   Heart,
   Home,
+  LucideIcon,
   MessageCircle,
   PlusSquare,
   Search,
 } from "lucide-react";
 import Link from "next/link";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@utils";
 import { usePathname } from "next/navigation";
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@ui/button";
+import { Icon } from "next/dist/lib/metadata/types/metadata-types";
+import ProfileAvatar from "./profile-avatar";
 
-const links = [
+interface NavigationLinks {
+  name: string;
+  href: string;
+  icon?: LucideIcon;
+  hideOnMobile?: boolean;
+}
+
+const links: NavigationLinks[] = [
   { name: "Home", href: "/dashboard", icon: Home },
   {
     name: "Search",
@@ -46,6 +56,10 @@ const links = [
     href: "/dashboard/create",
     icon: PlusSquare,
   },
+  {
+    name: "Profile",
+    href: "/dashboard/profile",
+  },
 ];
 
 const NavLinks = () => {
@@ -54,7 +68,7 @@ const NavLinks = () => {
   return (
     <>
       {links.map((link) => {
-        const LinkIcon = link.icon;
+        const LinkIcon = link.icon as LucideIcon;
         const isActive = pathname === link.href;
 
         return (
@@ -67,7 +81,11 @@ const NavLinks = () => {
               size: "lg",
             })}
           >
-            <LinkIcon className="w-6" />
+            {LinkIcon ? (
+              <LinkIcon className="w-6" />
+            ) : (
+              <ProfileAvatar size={6} />
+            )}
             <p
               className={`${cn("hidden lg:block", {
                 "font-extrabold": isActive,

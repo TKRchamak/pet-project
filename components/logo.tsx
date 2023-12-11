@@ -1,8 +1,8 @@
 import React from "react";
-import { buttonVariants } from "./ui/button";
+import { buttonVariants } from "@ui/button";
 import Link from "next/link";
-import { SwitchCamera } from "lucide-react";
-import { pacifico } from "./fonts";
+import { Instagram } from "lucide-react";
+import { lobster } from "@components/fonts";
 
 const Logo = () => {
   return (
@@ -10,13 +10,16 @@ const Logo = () => {
       href={"/dashboard"}
       className={buttonVariants({
         className:
-          "hidden md:flex navLink !mb-10 lg:hover:bg-transparent lg:!p-0",
+          "navLink hidden md:flex !mb-10 lg:hover:bg-transparent lg:!p-0 ",
         variant: "ghost",
         size: "lg",
       })}
     >
-      <SwitchCamera className="h-8 w-8 shrink-0" />
-      <p className={`text-bold text-2xl hidden lg:block ${pacifico.className}`}>
+      <Instagram className="h-6 w-6 shrink-0 lg:hidden" />
+
+      <p
+        className={`text-semibold text-3xl hidden lg:block ${lobster.className}`}
+      >
         Instaclone
       </p>
     </Link>

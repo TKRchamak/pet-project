@@ -1,20 +1,17 @@
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import React from "react";
-import { pacifico } from "@/components/fonts";
-import { Button } from "@/components/ui/button";
+import { pacifico } from "@components/fonts";
+import { Button } from "@ui/button";
 import { LogOut, Plus } from "lucide-react";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import UploadContent from "./upload-content";
+import { Dialog, DialogTrigger } from "@ui/dialog";
+import UploadContent from "@components/upload-content";
+import ProfileAvatar from "@components/profile-avatar";
 
 const Profile = () => {
   return (
     <main className="flex flex-col justify-between h-[150px]">
       <div className="flex justify-between items-center">
         <div className="flex justify-center items-center gap-4">
-          <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback>ZA</AvatarFallback>
-          </Avatar>
+          <ProfileAvatar size={10} />
           <div className="flex flex-col items-start justify-center">
             <p className={`text-lg text-extrabold ${pacifico.className}`}>
               Zaber Ahmed

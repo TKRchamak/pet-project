@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import data from "@/lib/data.json";
-import { Separator } from "@/components/ui/separator";
-import { pacifico } from "@/components/fonts";
+import { Separator } from "@ui/separator";
+import { pacifico } from "@components/fonts";
 
 const Gallery = () => {
   return (
