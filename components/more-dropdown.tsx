@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import { Button } from "@ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,7 +13,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@ui/dropdown-menu";
 import { useEffect, useRef, useState } from "react";
 import {
   Activity,
@@ -25,9 +25,9 @@ import {
   Settings,
   Sun,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Label } from "./ui/label";
-import { Switch } from "./ui/switch";
+import { cn } from "@utils";
+import { Label } from "@ui/label";
+import { Switch } from "@ui/switch";
 import { useTheme } from "next-themes";
 
 export function MoreDropDown() {

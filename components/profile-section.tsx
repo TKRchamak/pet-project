@@ -1,10 +1,10 @@
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarImage, AvatarFallback } from "@ui/avatar";
 import React from "react";
-import { pacifico } from "@/components/fonts";
-import { Button } from "@/components/ui/button";
+import { pacifico } from "@components/fonts";
+import { Button } from "@ui/button";
 import { LogOut, Plus } from "lucide-react";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import UploadContent from "./upload-content";
+import { Dialog, DialogTrigger } from "@ui/dialog";
+import UploadContent from "@components/upload-content";
 
 const Profile = () => {
   return (

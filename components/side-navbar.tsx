@@ -1,7 +1,7 @@
-import Logo from "@/components/logo";
+import Logo from "@components/logo";
 import React from "react";
-import NavLinks from "./nav-links";
-import { MoreDropDown } from "@/components/more-dropdown";
+import NavLinks from "@components/nav-links";
+import { MoreDropDown } from "@components/more-dropdown";
 
 const SideNavbar = () => {
   return (

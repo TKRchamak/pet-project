@@ -12,9 +12,9 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@utils";
 import { usePathname } from "next/navigation";
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@ui/button";
 
 const links = [
   { name: "Home", href: "/dashboard", icon: Home },

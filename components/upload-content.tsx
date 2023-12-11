@@ -7,11 +7,11 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useToast } from "@/components/ui/use-toast";
+} from "@ui/dialog";
+import { Button } from "@ui/button";
+import { Input } from "@ui/input";
+import { Label } from "@ui/label";
+import { useToast } from "@ui/use-toast";
 
 const UploadContent = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -25,7 +25,6 @@ const UploadContent = () => {
   };
 
   const handleUpload = (event: any) => {
-    // Simulate an artificial delay using setTimeout
     if (!selectedFile) {
       toast({
         variant: "destructive",
@@ -35,6 +34,8 @@ const UploadContent = () => {
     }
 
     setUploading(true);
+
+    // Simulate an artificial delay using setTimeout
     setTimeout(() => {
       console.log("Simulated upload complete");
       console.log("Selected file:", selectedFile);
