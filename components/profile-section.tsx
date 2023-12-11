@@ -1,6 +1,6 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import React from "react";
-import { pacifico } from "@/components/ui/fonts";
+import { pacifico } from "@/components/fonts";
 import { Button } from "@/components/ui/button";
 import { LogOut, Plus } from "lucide-react";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
