@@ -14,6 +14,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useRouter } from "next/navigation";
+import { authenticate } from "@/lib/action";
 
 const formSchema = zod.object({
   email: zod.string().email({
@@ -27,6 +28,7 @@ const formSchema = zod.object({
 const LoginForm = () => {
   const router = useRouter();
 
+  // authenticate
   const form = useForm<zod.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -35,16 +37,28 @@ const LoginForm = () => {
     },
   });
 
-  const onSubmit = (values: zod.infer<typeof formSchema>) => {
-    console.log("values:", values);
-    if (values) {
-      router.push("/dashboard");
-    }
+  const onSubmit = async (values: zod.infer<typeof formSchema>) => {
+    // console.log("values:", values);
+
+    // const params = new URLSearchParams(values);
+    // params.append("param1", "value1");
+    // params.append("param2", "value2");
+    let value = { ...values, grant_type: "password_username" };
+
+    const resData = await authenticate(value);
+    console.log(resData);
+
+    // if (values) {
+    //   router.push("/dashboard");
+    // }
   };
+
+  // const [state, dispatch] = useFormState(authenticate, undefined);
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        {/* <form action={dispatch} className="space-y-6"> */}
         <FormField
           control={form.control}
           name="email"
