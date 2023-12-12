@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { useRouter } from "next/navigation";
 import { authenticate } from "@/lib/action";
+import { useFormState } from "react-dom";
 
 const formSchema = zod.object({
   email: zod.string().email({
@@ -37,28 +38,29 @@ const LoginForm = () => {
     },
   });
 
-  const onSubmit = async (values: zod.infer<typeof formSchema>) => {
-    // console.log("values:", values);
+  // const onSubmit = async (values: zod.infer<typeof formSchema>) => {
+  //     // console.log("values:", values);
 
-    // const params = new URLSearchParams(values);
-    // params.append("param1", "value1");
-    // params.append("param2", "value2");
-    let value = { ...values, grant_type: "password_username" };
+  //     // const params = new URLSearchParams(values);
+  //     // params.append("param1", "value1");
+  //     // params.append("param2", "value2");
+  //     let value = { ...values, grant_type: "password_username" };
 
-    const resData = await authenticate(value);
-    console.log(resData);
+  //     const resData = await authenticate(value);
+  //     console.log(resData);
 
-    // if (values) {
-    //   router.push("/dashboard");
-    // }
-  };
+  //     // if (values) {
+  //     //   router.push("/dashboard");
+  //     // }
+  // };
 
-  // const [state, dispatch] = useFormState(authenticate, undefined);
+  const [state, dispatch] = useFormState(authenticate, undefined);
+  // console.log(state);
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        {/* <form action={dispatch} className="space-y-6"> */}
+      {/* <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6"> */}
+      <form action={dispatch} className="space-y-6">
         <FormField
           control={form.control}
           name="email"
