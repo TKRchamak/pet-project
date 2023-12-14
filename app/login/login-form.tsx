@@ -54,8 +54,8 @@ const LoginForm = () => {
   //     // }
   // };
 
-  const [state, dispatch] = useFormState(authenticate, undefined);
-  // console.log(state);
+  const [errorMessage, dispatch] = useFormState(authenticate, undefined);
+  console.log(errorMessage);
 
   return (
     <Form {...form}>
