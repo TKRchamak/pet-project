@@ -38,24 +38,8 @@ const LoginForm = () => {
     },
   });
 
-  // const onSubmit = async (values: zod.infer<typeof formSchema>) => {
-  //     // console.log("values:", values);
-
-  //     // const params = new URLSearchParams(values);
-  //     // params.append("param1", "value1");
-  //     // params.append("param2", "value2");
-  //     let value = { ...values, grant_type: "password_username" };
-
-  //     const resData = await authenticate(value);
-  //     console.log(resData);
-
-  //     // if (values) {
-  //     //   router.push("/dashboard");
-  //     // }
-  // };
-
   const [errorMessage, dispatch] = useFormState(authenticate, undefined);
-  console.log(errorMessage);
+  console.log("From the login page", errorMessage);
 
   return (
     <Form {...form}>
