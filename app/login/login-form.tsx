@@ -38,7 +38,17 @@ const LoginForm = () => {
     },
   });
 
-  const [errorMessage, dispatch] = useFormState(authenticate, undefined);
+  const func = async (formData: FormData) => {
+    const requestData = {
+      username: formData.get("email"),
+      password: formData.get("password"),
+      grant_type: "password_username",
+    };
+
+    return await authenticate(requestData);
+  };
+
+  const [errorMessage, dispatch] = useFormState(func, undefined);
   console.log("From the login page", errorMessage);
 
   return (
