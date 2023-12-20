@@ -11,8 +11,45 @@ async function middleware(request: NextRequest) {
     const access_token = request.cookies.get("access_token");
     const refresh_token = request.cookies.get("refresh_token");
 
-    if (!access_token && refresh_token) {
+    if (!access_token && !refresh_token && request.nextUrl.pathname.startsWith('/dashboard')) {
+        return NextResponse.redirect(new URL('/login', request.url));
+    }
 
+    if (refresh_token && request.nextUrl.pathname.startsWith('/login')) {
+        if (access_token) {
+            return NextResponse.redirect(new URL('/dashboard', request.url));
+        } else {
+            const res = await fetch("http://127.0.0.1:5000/user/auth", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    grant_type: "refresh_token",
+                    refresh_token: refresh_token.value
+                }),
+            });
+
+            const user = await res.json();
+
+            // const access_token = request.cookies.get("access_token");
+            // console.log("for test===========================\n", user, access_token);
+
+            const response = NextResponse.redirect(new URL('/dashboard', request.url));
+
+            response.cookies.set("access_token", user?.access_token, {
+                path: "/",
+                domain: "localhost",
+                maxAge: user?.expires_in,
+                httpOnly: true,
+                secure: false,
+            });
+
+            return response;
+        }
+    }
+
+    if (!access_token && refresh_token) {
         const res = await fetch("http://127.0.0.1:5000/user/auth", {
             method: "POST",
             headers: {
@@ -27,7 +64,7 @@ async function middleware(request: NextRequest) {
         const user = await res.json();
 
         // const access_token = request.cookies.get("access_token");
-        console.log("for test===========================\n", user, access_token);
+        // console.log("for test===========================\n", user, access_token);
 
         const response = NextResponse.next();
 
@@ -42,14 +79,14 @@ async function middleware(request: NextRequest) {
         return response;
     }
 
-    const token = access_token?.value;
-    if (request.nextUrl.pathname.startsWith('/dashboard')) {
-        if (!token) {
-            return NextResponse.redirect(new URL('/login', request.url));
-        } else {
-            return NextResponse.next();
-        }
-    }
+    // const token = access_token?.value;
+    // if (request.nextUrl.pathname.startsWith('/dashboard')) {
+    //     if (!token) {
+    //         return NextResponse.redirect(new URL('/login', request.url));
+    //     } else {
+    //         return NextResponse.next();
+    //     }
+    // }
     return NextResponse.next();
 }
 export default middleware;

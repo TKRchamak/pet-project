@@ -28,6 +28,7 @@ const formSchema = zod.object({
 
 const LoginForm = () => {
   const router = useRouter();
+  const [userData, dispatch] = useFormState(onSubmit, undefined);
 
   // authenticate
   const form = useForm<zod.infer<typeof formSchema>>({
@@ -38,23 +39,32 @@ const LoginForm = () => {
     },
   });
 
-  const func = async (formData: FormData) => {
-    const requestData = {
-      username: formData.get("email"),
-      password: formData.get("password"),
+  async function onSubmit(
+    prevState: string | undefined,
+    values: zod.infer<typeof formSchema>
+  ) {
+    // Do something with the form values.
+    // ✅ This will be type-safe and validated.
+    // console.log(values);
+
+    const postData = {
       grant_type: "password_username",
+      username: values.email,
+      password: values.password,
     };
 
-    return await authenticate(requestData);
-  };
+    const data = await authenticate(postData);
 
-  const [errorMessage, dispatch] = useFormState(func, undefined);
-  console.log("From the login page", errorMessage);
+    if (data) {
+      router.replace("/dashboard");
+    }
+    return data;
+  }
 
   return (
     <Form {...form}>
-      {/* <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6"> */}
-      <form action={dispatch} className="space-y-6">
+      <form onSubmit={form.handleSubmit(dispatch)} className="space-y-6">
+        {/* <form action={dispatch} className="space-y-6"> */}
         <FormField
           control={form.control}
           name="email"

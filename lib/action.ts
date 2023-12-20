@@ -2,8 +2,6 @@
 
 import { cookies } from "next/headers";
 
-// import { signIn } from "@/auth";
-
 export async function authenticate(data: any) {
     try {
         const res = await fetch("http://127.0.0.1:5000/user/auth", {
@@ -16,20 +14,25 @@ export async function authenticate(data: any) {
 
         const user = await res.json();
 
-        cookies().set("access_token", user?.access_token, {
-            path: "/",
-            domain: "localhost",
-            maxAge: user?.expires_in,
-            httpOnly: true,
-            secure: false,
-        });
-        cookies().set("refresh_token", user?.refresh_token, {
-            path: "/",
-            domain: "localhost",
-            maxAge: 60 * 60 * 7,
-            httpOnly: true,
-            secure: false,
-        });
+        if (user?.access_token) {
+            cookies().set("access_token", user?.access_token, {
+                path: "/",
+                domain: "localhost",
+                maxAge: user?.expires_in,
+                httpOnly: true,
+                secure: false,
+            });
+        }
+
+        if (user?.refresh_token) {
+            cookies().set("refresh_token", user?.refresh_token, {
+                path: "/",
+                domain: "localhost",
+                maxAge: 60 * 60 * 7,
+                httpOnly: true,
+                secure: false,
+            });
+        }
 
         if (res.ok && user) {
             return user;
@@ -51,3 +54,21 @@ export async function authenticate(data: any) {
         return 'authentication error';
     }
 }
+
+
+// try {
+//     const response = await axios.post(
+//       `http://127.0.0.1:5000/user/auth`,
+//       postData,
+//       {
+//         headers: headers,
+//       }
+//     );
+//     console.log(response.data);
+//     if (response.data.access_token) {
+//       router.push("/dashboard");
+//       return response.data;
+//     }
+//   } catch (error) {
+//     console.log({ error: "An error occurred" });
+//   }
